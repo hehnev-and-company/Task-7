@@ -11,6 +11,7 @@ import java.security.Principal;
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService{
 
     private UserRepository userRepository;
@@ -43,7 +44,6 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    @Transactional
     public void editUser(User user) {
         User newUser = new User();
         if (user != null) {
