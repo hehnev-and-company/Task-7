@@ -11,13 +11,12 @@ import java.security.Principal;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService{
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -39,11 +38,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public void addUser(User newUser){
         userRepository.save(newUser);
     }
 
     @Override
+    @Transactional
     public void editUser(User user) {
         User newUser = new User();
         if (user != null) {
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public void deleteUser(User deleteUser) {
         userRepository.delete(deleteUser);
     }
