@@ -24,6 +24,6 @@ public class UserController {
         if (principal != null) {
             model.addAttribute("user", userService.getUserByLogin(principal.getName()));
         }
-        return "/user";
+        return "user/user_page";
     }
 }

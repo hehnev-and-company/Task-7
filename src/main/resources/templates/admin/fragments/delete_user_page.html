@@ -1,0 +1,90 @@
+<div id="deleteUserForm" th:fragment="deleteUserFormFragment">
+  <div class="modal fade" th:id="'deleteUser' + ${user.id}" tabindex="-1" aria-labelledby="deleteUserModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteUserModalLabel">Edit user</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <form th:action="@{/admin/delete/{id}(id=${user.getId()})}" method="post">
+            <div class="container">
+              <div class="row justify-content-md-center">
+                <div class="col-6">
+                  <div class="row justify-content-center">
+                    <div class="form-group" style="text-align: center;">
+                      <label for="deleteId">ID</label>
+                      <input disabled type="text" class="form-control"
+                             id="deleteId"
+                             th:name="id"
+                             th:value="${user.id}">
+                      <input type="hidden" th:name="id"
+                             th:value="${user.id}"/>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="form-group" style="text-align: center;">
+                      <label for="deleteFirstName">First Name</label>
+                      <input disabled type="text" placeholder="First name" th:name="firstName"
+                             th:value="${user.firstName}" id="deleteFirstName"
+                             class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="form-group" style="text-align: center;">
+                      <label for="deleteLastName">Last Name</label>
+                      <input disabled type="text" placeholder="Last name" th:name="lastName"
+                             th:value="${user.lastName}" id="deleteLastName"
+                             class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="form-group" style="text-align: center;">
+                      <label for="deleteEmail">Email</label>
+                      <input disabled type="text" placeholder="Email" th:name="email"
+                             th:value="${user.email}" id="deleteEmail"
+                             class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="form-group" style="text-align: center;">
+                      <label for="deleteLogin">Login</label>
+                      <input disabled type="text" placeholder="Login" th:name="login"
+                             th:value="${user.login}" id="deleteLogin"
+                             class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="form-group" style="text-align: center;">
+                      <label for="deletePassword">Password</label>
+                      <input disabled type="password" placeholder="Password"
+                             th:name="password"
+                             id="deletePassword" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="form-group" style="text-align: center;">
+                      <br>
+                      <label for="roles">Roles:</label>
+                      <select disabled multiple name="roleIds" id="roles" required>
+                        <option th:each="role : ${roles}" th:value="${role.id}"
+                                th:text="${role.name}"
+                                th:selected="${user.roles.contains(role)}"></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

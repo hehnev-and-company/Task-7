@@ -1,0 +1,67 @@
+<div id="createUserForm" th:fragment="createUserFormFragment">
+  <section class="p-3 bg-white">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-7">
+          <form th:action="@{/admin}" method="post" th:object="${user}">
+            <div class="row justify-content-center">
+              <div class="form-group" style="text-align: center;">
+                <label for="firstName">First name</label>
+                <input type="text" placeholder="First name" th:name="firstName"
+                       id="firstName"
+                       class="form-control" required>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="form-group" style="text-align: center;">
+                <label for="lastName">Last name</label>
+                <input type="text" placeholder="Last name" th:name="lastName"
+                       id="lastName"
+                       class="form-control" required>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="form-group" style="text-align: center;">
+                <label for="email">Email</label>
+                <input type="text" placeholder="Email" th:name="email"
+                       id="email"
+                       class="form-control" required>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="form-group" style="text-align: center;">
+                <label for="login">Login</label>
+                <input type="text" placeholder="Login" th:name="login"
+                       id="login"
+                       class="form-control" required>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="form-group" style="text-align: center;">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" th:name="password"
+                       id="password" class="form-control"
+                       required>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="form-group" style="text-align: center;">
+                <label for="roles">Role</label>
+                <br>
+                <select multiple name="roleIds" id="roles" required>
+                  <option th:each="role : ${roles}" th:value="${role.id}"
+                          th:text="${role.name}"></option>
+                </select>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="form-group" style="text-align: center;">
+                <button type="submit" style="background-color: forestgreen" class="text-white">Add new user</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

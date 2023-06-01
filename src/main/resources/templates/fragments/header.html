@@ -1,0 +1,12 @@
+<div id="mainHeader" th:fragment="mainHeaderFragment">
+  <header class="bg-dark p-1 text-white d-flex justify-content-between">
+    <div>
+      <span th:text="${user.getEmail()}" class="fw-bold"></span>
+      <span> with roles:</span>
+      <span th:text="${user.getAuthorities()}">roles</span>
+    </div>
+    <form th:action="@{/logout}" method="post">
+      <button type="submit" class="btn text-white-50">logout</button>
+    </form>
+  </header>
+</div>
