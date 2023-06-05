@@ -10,9 +10,9 @@ import ru.itmentor.spring.boot_security.demo.model.User;
 import ru.itmentor.spring.boot_security.demo.repositories.RoleRepository;
 import ru.itmentor.spring.boot_security.demo.repositories.UserRepository;
 
-import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -47,18 +47,18 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void addUser(User newUser, Collection<Long> roleIds){
+    public void addUser(User newUser){
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-        newUser.setRoles(roleRepository.findAllById(roleIds));
+        newUser.setRoles(roleRepository.findAllById(newUser.getRoles().stream().map(Role::getId).collect(Collectors.toList())));
         userRepository.save(newUser);
     }
 
     @Override
     @Transactional
-    public void editUser(User user, Collection<Long> roleIds) {
+    public void editUser(User user) {
        user.setPassword(passwordEncoder.encode(user.getPassword()));
        user.setRoles(roleRepository.findAll());
-        userRepository.save(user);
+       userRepository.save(user);
     }
 
     @Override

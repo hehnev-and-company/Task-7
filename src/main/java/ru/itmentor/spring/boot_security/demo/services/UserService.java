@@ -10,8 +10,8 @@ public interface UserService {
     List<User> getAllUsers();
     User getUserByLogin(String login);
     User getUserById(Long id);
-    void addUser(User newUser, Collection<Long> roleIds);
-    void editUser(User user, Collection<Long> roleIds);
+    void addUser(User newUser);
+    void editUser(User user);
     void deleteUser(User deleteUser);
     Collection<Role> getRoles();
 }
