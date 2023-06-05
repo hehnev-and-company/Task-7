@@ -1,0 +1,6 @@
+<div th:fragment="sidebar">
+  <div class="list-group ">
+    <a th:if="${#request.isUserInRole('ADMIN')}" href="/app/admin" class="list-group-item list-group-item-action bg-primary text-white">Admin</a>
+    <a th:if="${#request.isUserInRole('USER') or #request.isUserInRole('ADMIN')}" href="/app/user" class="list-group-item list-group-item-action bg-primary text-white">User</a>
+  </div>
+</div>
